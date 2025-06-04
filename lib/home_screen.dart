@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasky/add_task_screen.dart';
 import 'package:tasky/core/model/task_model.dart';
-import 'package:tasky/main_screen.dart';
+import 'package:tasky/todo_screen.dart';
 
 import 'core/component/custom_task_container.dart';
 
@@ -57,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
       //     );
       //   },
       // ),
+
       body: SafeArea(
         child: Container(
         padding: const EdgeInsets.all(16.0),
@@ -76,6 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   // SizedBox(height: 38),
                   SizedBox(width: 8),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Good Evening ,${username} ",
@@ -117,23 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 16),
               //add tasks here
-              SizedBox(
-                height: 100,
-                child: ListView.builder(
-                  /// If we remove the SizedBox, it will give an error because the ListView won't know the size you want from the screen.
-                  itemCount: taskModel.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    print(taskModel[index].title);
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-
-                       child: CustomTaskContainer(taskModel:taskModel[index]),
-
-                    );
-                  },
-                ),
-              ),
-
+              CustomTaskContainer(taskModel:taskModel),
               SizedBox(height: 30),
 
               ElevatedButton.icon(
@@ -150,6 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 label: Text('Add New Task'),
                 icon: Icon(Icons.add),
               ),
+
             ],
           ),
         ),
